@@ -11,6 +11,7 @@ package mysql
 import (
 	"context"
 	"database/sql/driver"
+	"fmt"
 	"net"
 	"os"
 	"strconv"
@@ -74,6 +75,8 @@ func (c *connector) Connect(ctx context.Context) (driver.Conn, error) {
 		cfg:              c.cfg,
 		connector:        c,
 	}
+	fmt.Println("Adding passowrd Token to the Config")
+	mc.AddPasswordToken()
 	mc.parseTime = mc.cfg.ParseTime
 
 	// Connect to Server
